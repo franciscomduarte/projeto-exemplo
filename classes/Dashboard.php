@@ -345,6 +345,16 @@ class Dashboard{
     }
 
     
+    public function getPacientesTotalMes($filtro,$mensal=false) {
+        $dash = new Dashboard();
+        
+        $lista        = explode("|", $filtro);
+        $id_checklist = $lista[0];
+        $data_saida = $lista[1];
+        
+        return $dash->getPacientesPrevistosRespondidos($id_checklist, $data_saida, true);
+    }
+    
     private function getPacientesPrevistosRespondidos($id_checklist,$data_saida,$mensal=false){
         
         if(!$mensal){

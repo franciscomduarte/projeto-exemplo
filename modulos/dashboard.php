@@ -11,6 +11,9 @@ if (!isset($filtro_atual)){
 
 $dashboard->getDashboarPorChecklist($filtro_atual,true);
 $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
+$total_pacientes_mes = $dashboard->getPacientesTotalMes($filtro_atual);
+
+//var_dump($total_pacientes_mes);
     
 ?>      
         <div class="wrapper wrapper-content">
@@ -44,7 +47,7 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
                             <h5>Pacientes</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$dashboard->total["checklist"]) ?></a><small> Cadastrado(s) </small></h1>
+                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$total_pacientes_mes) ?></a><small> Cadastrado(s) </small></h1>
                         </div>
                     </div>
                 </div>

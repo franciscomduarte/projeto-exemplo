@@ -18,7 +18,7 @@ if ($chave == "amFuYWluYVNBQlJJTkFkZVBBVUxBU0FtYW50aGFGT1M="){
 
     foreach ($cl as $checklist) {
         $enviaMensagem = false;
-        $mensagem = "Bundle . $checklist->sigla . não preenchido para o(s) paciente(s):";
+        $mensagem = "<b>Bundle . $checklist->sigla . não preenchido para o(s) paciente(s):</b>";
         $internacoes = $checklist->internacoes;
         foreach ($internacoes as $internacao) {
             $objChecklist = new Checklist();
@@ -28,7 +28,7 @@ if ($chave == "amFuYWluYVNBQlJJTkFkZVBBVUxBU0FtYW50aGFGT1M="){
                 if ($checklist->id == $bundle->id) {
                     if($statusPreenchimento == null){
                         $enviaMensagem = true;
-                        $mensagem .= $internacao->paciente->nome . "\n";
+                        $mensagem .= $internacao->paciente->nome . "<br>";
                     }
                     
                 }

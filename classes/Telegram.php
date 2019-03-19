@@ -7,7 +7,7 @@ class Telegram extends Base
 {
     
     public function enviaAlerta($mensagem) {
-        $url = URL_TELEGRAM . TOKEN_TELEGRAM . "/sendMessage?chat_id=" . CHAT_ID . "&text=" . $mensagem;
+        $url = URL_TELEGRAM . TOKEN_TELEGRAM . "/sendMessage?parse_mode=html&chat_id=" . CHAT_ID . "&text=" . $mensagem;
         file_get_contents($url);
     }
     
