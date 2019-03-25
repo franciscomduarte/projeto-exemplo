@@ -190,6 +190,46 @@ class Dashboard{
         define('FILTRO_INICIAL', $filtro_retorno);
     }
     
+    public function getNumeroPacientesCkecklistMes($filtro, $id_setor=null){
+        $lista        = explode("|", $filtro);
+        $id_checklist = $lista[0];
+        $data_internacao = $lista[1];
+        
+        if ($id_setor!=null){
+            $condicao = " and b.id_setor =  " . $id_setor;
+        }
+        
+        $sql = "SELECT * 
+                FROM paciente a, internacao b, internacao_checklist c
+                WHERE 1=1 
+                and a.id = b.id_paciente
+                and b.id = c.id_internacao
+                and c.id_checklist = '".$id_checklist."' 
+                and (date_format(c.data_saida,'%Y-%m') = '" . $data_internacao . "' or c.data_saida is null )" . $condicao  ;
+        $query = executarSql($sql);
+        return $query->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function getNumeroPreenchidosCkecklistMes($filtro, $id_setor=null){
+        $lista        = explode("|", $filtro);
+        $id_checklist = $lista[0];
+        $data_resposta = $lista[1];
+        
+        if ($id_setor!=NULL){
+            $condicao = " and b.id_setor =  " . $id_setor;
+        }
+        
+        $sql = " SELECT * 
+                 FROM resposta_checklist a, internacao b 
+                 WHERE 1 = 1 
+                 and a.id_checklist = '".$id_checklist."'
+                 and a.id_internacao = b.id 
+                 and date_format(a.data_resposta,'%Y-%m') = '" . $data_resposta . "'" . $condicao;
+        
+        $query = executarSql($sql);
+        return $query->fetch_all(MYSQLI_ASSOC);
+    }
+    
     public function getDashboarPorChecklist($filtro,$mensal=false,$tipo_questao="SN"){
         
         $lista        = explode("|", $filtro);

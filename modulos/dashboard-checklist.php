@@ -1,14 +1,22 @@
 <?php
 $filtro_atual    = $_REQUEST['filtro'];
 
+$dashboard = new Dashboard();
+$dashboard_pie = new Dashboard();
+
+if (!isset($filtro_atual)){
+    $dashboard->definirDataFiltroCheckListInicial(NULL,true);
+    $filtro_atual = FILTRO_INICIAL;
+}
+
 $filtro_cheklist = array("id_checklist" => $_REQUEST['id_checklist'],
                          "id_setor"     => $_REQUEST['id_setor']);
 
 $setor = new Setor();
 $setor = $setor->listarPorId($filtro_cheklist['id_setor']);
 
-$dashboard = new Dashboard();
-$dashboard_pie = new Dashboard();
+$numeroPacientesCheckListMes = count($dashboard->getNumeroPacientesCkecklistMes($filtro_atual, $setor->id));
+$preenchidosCheckListMes = count($dashboard->getNumeroPreenchidosCkecklistMes($filtro_atual, $setor->id));
     
     ?>
         <div class="wrapper wrapper-content">
@@ -22,7 +30,8 @@ $dashboard_pie = new Dashboard();
                             <h5>Pacientes</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$dashboard->total["checklist"]) ?></a><small> Cadastrado(s) </small></h1>
+                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$numeroPacientesCheckListMes) ?></a><small> Cadastrado(s) </small></h1>
+                        	<small style="color: red"> nº de pacientes que estiveram em cada check list por mês</small>
                         </div>
                     </div>
                 </div>
@@ -34,7 +43,8 @@ $dashboard_pie = new Dashboard();
                             <h5>Números de bundles</h5>
                         </div>
                         <div class="ibox-content">
-                        	<h1 class="no-margins"><a href="/paciente"><?php printf("%02d",$dashboard->total["paciente"]) ?></a><small> Cadastrado(s)</small></h1>
+                        	<h1 class="no-margins"><a href="/paciente"><?php printf("%02d",$preenchidosCheckListMes) ?></a><small> Preenchido(s)</small></h1>
+                        	<small style="color: red"> nº de check list preenchidos no mês</small>
                         </div>
                     </div>
                 </div>

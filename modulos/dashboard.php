@@ -11,7 +11,10 @@ if (!isset($filtro_atual)){
 
 $dashboard->getDashboarPorChecklist($filtro_atual,true);
 $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
+$numeroPacientesCheckListMes = count($dashboard->getNumeroPacientesCkecklistMes($filtro_atual));
+$preenchidosCheckListMes = count($dashboard->getNumeroPreenchidosCkecklistMes($filtro_atual));
     
+var_dump($numeroPacientesCheckListMes);
 ?>      
         <div class="wrapper wrapper-content">
             <div class="container">
@@ -47,7 +50,8 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
                             <h5>Pacientes</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$dashboard->total["checklist"]) ?></a><small> Cadastrado(s) </small></h1>
+                            <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$numeroPacientesCheckListMes) ?></a><small> Cadastrado(s) </small></h1>
+                            <small style="color: red"> nº de pacientes que estiveram em cada check list por mês</small>
                         </div>
                     </div>
                 </div>
@@ -59,7 +63,8 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
                             <h5>Números de bundles</h5>
                         </div>
                         <div class="ibox-content">
-                        	<h1 class="no-margins"><a href="/paciente"><?php printf("%02d",$dashboard->total["paciente"]) ?></a><small> Cadastrado(s)</small></h1>
+                        	<h1 class="no-margins"><a href="/paciente"><?php printf("%02d", $preenchidosCheckListMes) ?></a><small> Preenchido(s)</small></h1>
+                        	<small style="color: red"> nº de check list preenchidos no mês</small>
                         </div>
                     </div>
                 </div>
