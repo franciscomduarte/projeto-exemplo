@@ -108,6 +108,13 @@ class Item extends Base
 	    $sql = "SELECT c.* FROM checklist as a, checklist_item as b, item as c 
                 WHERE a.id = b.id_checklist 
                 AND c.id = b.id_item 
+                AND b.id_checklist = $id 
+                AND c.tipo != 'TX'
+                UNION ALL
+                SELECT c.* FROM checklist as a, checklist_item as b, item as c 
+                WHERE a.id = b.id_checklist 
+                AND c.tipo = 'TX'
+                AND c.id = b.id_item 
                 AND b.id_checklist = $id ";
 	    $query = executarSql($sql);
 	    $array = $query->fetch_all(MYSQLI_ASSOC);

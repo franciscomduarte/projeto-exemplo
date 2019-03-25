@@ -19,8 +19,10 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
             <div class="ibox-title">
                 <div class="pull-right">
                 	 <div class="btn-group">
-                	 <label class="form-check-label">
-                	 	<select name="filtro" id="filtro_dashboard" class="form-control select2_demo_2_checklist">
+				
+			<form name="form_filtro_dashboard" action="/" method="POST">
+                	  <label class="form-check-label"> 
+				<select name="filtro" id="filtro_dashboard" onchange="javascript:filtrar(this)" class="form-control select2_demo_2_checklist">
 							<?php
 							
 							foreach ( $dashboard->getDashboarFiltroPorChecklist(NULL,NULL,true) as $filtro) {
@@ -31,7 +33,8 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
 							}
 							?>
                     		</select>
-                    	</label>
+                    	  </label>
+			</form>
                     </div>
                 </div>
             </div>
@@ -60,7 +63,6 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
                         </div>
                     </div>
                 </div>
-
             </div>
             
             <div class="row">
@@ -169,9 +171,9 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
         </div>     
 <script>
 
-$('#filtro_dashboard').change(function(){
-    location.href="/?filtro="+($(this).val());
-});
+function filtrar(obj){//alert(obj.value);
+  document.form_filtro_dashboard.submit();
+}
 
 $(document).ready(function() {
 

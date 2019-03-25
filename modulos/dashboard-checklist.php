@@ -51,7 +51,10 @@ $dashboard_pie = new Dashboard();
                                 <div class="pull-right">
                                 	 <div class="btn-group">
                                 	 	<div class="col-lg-12">
-                                	 	<select name="filtro" id="filtro_dashboard" class="form-control select2_demo_2_checklist">
+						<form name="form_filtro_dashboard" action="dashboard-checklist" method="POST">
+						<input type="hidden" name="id_checklist" value="<?php echo $filtro_cheklist['id_checklist']?>">
+						<input type="hidden" name="id_setor" value="<?php echo $filtro_cheklist['id_setor']?>">
+                                	 	<select name="filtro" id="filtro_dashboard" onchange="javascript:filtrar(this)" class="form-control select2_demo_2_checklist">
             								<?php
             								
             								foreach ( $dashboard->getDashboarFiltroPorChecklist($filtro_cheklist["id_checklist"],$filtro_cheklist["id_setor"],true) as $filtro) {
@@ -66,7 +69,8 @@ $dashboard_pie = new Dashboard();
             								}
             								?>
             	                    		</select>
-            	                   		</div>
+            	                   		</form>
+						</div>
                                     </div>
                                 </div>
                                 
@@ -162,9 +166,9 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
         </div>
         
 <script>
-$('#filtro_dashboard').change(function(){
-    location.href="dashboard-checklist?filtro="+($(this).val())+"&id_checklist=<?php echo $filtro_cheklist['id_checklist']?>&id_setor=<?php echo $filtro_cheklist['id_setor']?>";
-});
+function filtrar(obj){//alert(obj.value);
+  document.form_filtro_dashboard.submit();
+}
 
 $(document).ready(function() {
 
