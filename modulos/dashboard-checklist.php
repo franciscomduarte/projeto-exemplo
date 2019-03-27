@@ -95,7 +95,7 @@ $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div>
-                                   			 <canvas id="barChartChecklist" height="140"></canvas>
+                                   			 <canvas id="barChartChecklist" height="170"></canvas>
                                 		</div>
                                     </div>
                                 </div>

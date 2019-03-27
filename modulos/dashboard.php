@@ -3,6 +3,7 @@
 $filtro_atual = $_REQUEST['filtro'];
 $dashboard = new Dashboard();
 $dashboard_pie = new Dashboard();
+$objChecklist = new Checklist();
 
 if (!isset($filtro_atual)){
     $dashboard->definirDataFiltroCheckListInicial(NULL,true);
@@ -13,8 +14,8 @@ $dashboard->getDashboarPorChecklist($filtro_atual,true);
 $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
 $numeroPacientesCheckListMes = count($dashboard->getNumeroPacientesCkecklistMes($filtro_atual));
 $preenchidosCheckListMes = count($dashboard->getNumeroPreenchidosCkecklistMes($filtro_atual));
+$objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
     
-var_dump($numeroPacientesCheckListMes);
 ?>      
         <div class="wrapper wrapper-content">
             <div class="container">
@@ -76,7 +77,7 @@ var_dump($numeroPacientesCheckListMes);
             	<div class="col-lg-12">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab-1"> Bundles </a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab-1"> Bundles - <?php echo strtoupper($objChecklist->nome." - ".$objChecklist->sigla." | ".formatarFiltro($filtro_atual))?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
@@ -86,7 +87,7 @@ var_dump($numeroPacientesCheckListMes);
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div>
-                                           			 <canvas id="barChartChecklist" height="140"></canvas>
+                                           			 <canvas id="barChartChecklist" height="170"></canvas>
                                         		</div>
                                             </div>
                                     	</div>

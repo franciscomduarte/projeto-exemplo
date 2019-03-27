@@ -18,7 +18,7 @@
 	                    <div class="ibox-content">
 						<div class="ibox ">
                         <div class="ibox-title">
-                            <h5><?php echo $questionario->nome?></h5>
+                            <h5><?php echo "Bundle - ".$questionario->sigla?></h5>
                         </div>
                         <form role="form" action="/checklist-resposta/gravar" method="post">
                         <input type="hidden"  value="<?php echo $id_checklist?>" name="id_checklist">

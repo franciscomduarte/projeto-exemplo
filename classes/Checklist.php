@@ -261,6 +261,18 @@ class Checklist extends Base
 		return $checklist;
 		
 	}
+
+	public function listarPorIdFiltro($filtro){
+
+           $lista        = explode("|", $filtro);
+           $id_checklist = $lista[0];
+           $data_internacao = $lista[1];
+
+	   return $this->listarPorId($id_checklist);	
+
+	}
+		
+
 	
 	public function listarPorNome($nome){
 		$sql = "SELECT *

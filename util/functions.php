@@ -351,6 +351,14 @@
         }
         
         return ($tablet_browser > 0 || $mobile_browser > 0); 
-    }	
+    }
+
+    function formatarFiltro($filtro){
+	$linha = explode("|",$filtro);
+        $date  = date_create("01".$linha[1]);
+        return date_format($date, 'M/Y');	
+     }
+
+	
 	
 ?>
