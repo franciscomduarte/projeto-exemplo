@@ -10,7 +10,7 @@ class Checklist extends Base
     public $meta;
     public $sigla;
     public $cor;
-    public $tipo; //único ou diário
+    public $tipo; //ï¿½nico ou diï¿½rio
     public $itens = [];
 	
 	// internaÃ§Ãµes ativas no checklist
@@ -257,23 +257,16 @@ class Checklist extends Base
 		    $checklist->usuario       = $checklist->usuario->listarPorId($linha['usuario_id']);
 		    $checklist->internacoes   = $internacao->listarAtivas($linha['id']);
 		}
-		
 		return $checklist;
 		
 	}
 
 	public function listarPorIdFiltro($filtro){
-
-           $lista        = explode("|", $filtro);
-           $id_checklist = $lista[0];
-           $data_internacao = $lista[1];
-
+       $lista        = explode("|", $filtro);
+       $id_checklist = isset($lista[0]) ? $lista[0] : 0;
 	   return $this->listarPorId($id_checklist);	
-
 	}
 		
-
-	
 	public function listarPorNome($nome){
 		$sql = "SELECT *
 				FROM ".$this->tabela."

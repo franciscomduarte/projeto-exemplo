@@ -48,11 +48,10 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right">Total</span>
-                            <h5>Pacientes</h5>
+                            <h5>N. de Pacientes cadastrados</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins"><a href="/checklist"><?php printf("%02d",$numeroPacientesCheckListMes) ?></a><small> Cadastrado(s) </small></h1>
-                            <small style="color: red"> nº de pacientes que estiveram em cada check list por mês</small>
                         </div>
                     </div>
                 </div>
@@ -61,11 +60,10 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right">Total</span>
-                            <h5>Números de bundles</h5>
+                            <h5>N. de bundles preenchidos</h5>
                         </div>
                         <div class="ibox-content">
                         	<h1 class="no-margins"><a href="/paciente"><?php printf("%02d", $preenchidosCheckListMes) ?></a><small> Preenchido(s)</small></h1>
-                        	<small style="color: red"> nº de check list preenchidos no mês</small>
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,7 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
             	<div class="col-lg-12">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab-1"> Bundles - <?php echo strtoupper($objChecklist->nome." - ".$objChecklist->sigla." | ".formatarFiltro($filtro_atual))?></a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab-1"> Bundles - <?php echo strtoupper($objChecklist->sigla." | ".formatarFiltro($filtro_atual))?></a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
