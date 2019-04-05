@@ -29,10 +29,12 @@ class Internacao extends Base
 	    $id_internacao_inserida = self::retornaIdInserido();
 	    
 	    // insere na tabela internacao_checklist
-	    foreach ($obj->checklists as $checklist) {
-	        $sqlRelacionado = "INSERT INTO ".$this->tabela_relacionada." (id_internacao, id_checklist)
-                               VALUES ($id_internacao_inserida, $checklist)";
-	        executarSql($sqlRelacionado);
+	    if($obj->checklists){
+    	    foreach ($obj->checklists as $checklist) {
+    	        $sqlRelacionado = "INSERT INTO ".$this->tabela_relacionada." (id_internacao, id_checklist)
+                                   VALUES ($id_internacao_inserida, $checklist)";
+    	        executarSql($sqlRelacionado);
+    	    }
 	    }
 	}
 	
@@ -54,10 +56,12 @@ class Internacao extends Base
 	   executarSql($sql);
 	   
 	   // insere na tabela internacao_checklist
-	   foreach ($obj->checklists as $checklist) {
-	       $sqlRelacionado = "INSERT INTO ".$this->tabela_relacionada." (id_internacao, id_checklist)
-                               VALUES ($obj->id, $checklist)";
-	       executarSql($sqlRelacionado);
+	   if($obj->checklists) {
+    	   foreach ($obj->checklists as $checklist) {
+    	       $sqlRelacionado = "INSERT INTO ".$this->tabela_relacionada." (id_internacao, id_checklist)
+                                   VALUES ($obj->id, $checklist)";
+    	       executarSql($sqlRelacionado);
+    	   }
 	   }
 	}
 	

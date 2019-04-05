@@ -1,7 +1,7 @@
 <?php 
 
 	#dados do formulario
-    echo $cpf = 	$_REQUEST['cpf'];
+    $cpf = 	$_REQUEST['cpf'];
     if(validaCPF($cpf)) {
         $paciente               = new Paciente();
         $paciente->id           = $_REQUEST['id_paciente'];

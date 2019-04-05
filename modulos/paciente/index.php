@@ -86,7 +86,7 @@
 		<script>
 
 			function editar(id){
-				var pag = "/paciente/novo/"+id;
+				var pag = "/paciente/edita/"+id;
 				location.href = pag;
 			}
 

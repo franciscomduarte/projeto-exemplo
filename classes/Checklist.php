@@ -243,9 +243,10 @@ class Checklist extends Base
 	public function listarPorId($id){
 		self::listarObjetosPorId($id);
 		
-		$checklist = new Checklist();
+		$checklist = null;
 		$internacao = new Internacao();
 		foreach ($this->array as $linha) {
+		    $checklist = new Checklist();
 		    $checklist->id            = $linha['id'];
 		    $checklist->nome          = $linha['nome'];
 		    $checklist->data_cadastro = $linha['data_cadastro'];
@@ -263,7 +264,7 @@ class Checklist extends Base
 
 	public function listarPorIdFiltro($filtro){
        $lista        = explode("|", $filtro);
-       $id_checklist = isset($lista[0]) ? $lista[0] : 0;
+       $id_checklist = $lista[0] != "" ? $lista[0] : 0;
 	   return $this->listarPorId($id_checklist);	
 	}
 		

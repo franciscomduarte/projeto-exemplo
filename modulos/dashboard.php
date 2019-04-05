@@ -3,7 +3,8 @@
 $filtro_atual = $_REQUEST['filtro'];
 $dashboard = new Dashboard();
 $dashboard_pie = new Dashboard();
-$objChecklist = new Checklist();
+$objChecklist = null;
+$checklist = new Checklist();
 
 if (!isset($filtro_atual)){
     $dashboard->definirDataFiltroCheckListInicial(NULL,true);
@@ -14,7 +15,7 @@ $dashboard->getDashboarPorChecklist($filtro_atual,true);
 $dashboard_pie->getDashboarPorChecklist($filtro_atual,true,"VF");
 $numeroPacientesCheckListMes = count($dashboard->getNumeroPacientesCkecklistMes($filtro_atual));
 $preenchidosCheckListMes = count($dashboard->getNumeroPreenchidosCkecklistMes($filtro_atual));
-$objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
+$objChecklist = $checklist->listarPorIdFiltro($filtro_atual);
     
 ?>      
         <div class="wrapper wrapper-content">
@@ -71,7 +72,8 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
             
             <div class="row">
             
-            
+            <?php 
+            if ($objChecklist) { ?>
             	<div class="col-lg-12">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
@@ -141,6 +143,7 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
             <div class="col-lg-12">
             
             	       <?php 
+            	       //TODO rever
             	       //esse if foi um cat pra resolver mais facil
             	       $questoes_pie = [];
             	       if ($dashboard_pie->grafico_barras_inicial["labels"] != '"ADESÃO BUNDLE",""'){
@@ -173,6 +176,11 @@ $objChecklist = $objChecklist->listarPorIdFiltro($filtro_atual);
                      ?>
  
         </div>     
+        <?php } else { ?>
+        	<div class="col-lg-12">Ná há informações de bundles cadastrados. 
+        		<br>Para incluir pacientes em bundles <a href="/paciente/novo">Clique aqui</a>
+        	</div>
+        <?php } ?>
 <script>
 
 function filtrar(obj){//alert(obj.value);
