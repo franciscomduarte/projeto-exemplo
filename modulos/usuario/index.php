@@ -4,9 +4,8 @@
 	define("NOME_ACAO", "Listar"); 
 	include_once 'breadcrumb.php';
 	// Solucao de contorno para edição de usuários.
-	var_dump($_SESSION["usuario"]["email"]);
 
-        if ($_SESSION["usuario"]["email"] == "fosbsb@gmail.com" || 
+    if ($_SESSION["usuario"]["email"] == "fosbsb@gmail.com" || 
 	    $_SESSION["usuario"]["email"] == "ericsoaresd@gmail.com" || 
 	    $_SESSION["usuario"]["email"] == "olimpio@atenzi.com.br" || 
 	    $_SESSION["usuario"]["email"] == "admin@enap.gov.br"){
