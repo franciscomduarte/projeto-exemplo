@@ -5,16 +5,18 @@
 	$id = $params[2];
 
 	// Solucao de contorno para edição de usuários.
-	if ($_SESSION["usuario"] != "Eric Soares Dias" || 
-		$_SESSION["usuario"] != "Flaviano O. Silva" || 
-		$_SESSION["usuario"] != "DR. ALEXANDRE OLIMPIO" || 
-		$_SESSION["usuario"] != "Admin"){
-			echo "Acesso Bloqueado...";
-			exit();
-	}
+	if ($_SESSION["usuario"]["email"] == "fosbsb@gmail.com" || 
+	    $_SESSION["usuario"]["email"] == "ericsoaresd@gmail.com" || 
+	    $_SESSION["usuario"]["email"] == "olimpio@atenzi.com.br" || 
+	    $_SESSION["usuario"]["email"] == "admin@enap.gov.br"){
 
 	#dados do formulario
 	$usuario = new Usuario();
 	$usuario->deletar($id);
 	redirecionar("/usuario");
+
+	}else{
+		echo "Acesso Bloqueado...";
+		exit();
+	}
 ?>
